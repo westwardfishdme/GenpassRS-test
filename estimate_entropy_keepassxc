@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# This script automatically tests the entropy and averages it out:
+i=0
+while [[ "$i" -le 1000 ]]; do
+	keepassxc-cli generate -L 20 -e -l -U -n -s | keepassxc-cli estimate | awk '{ print $4 }' >>kpxc_dataset
+	i=$((i + 1))
+done
